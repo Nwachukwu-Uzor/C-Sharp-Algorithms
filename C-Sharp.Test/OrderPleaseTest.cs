@@ -6,6 +6,11 @@ namespace C_Sharp.Test
     [TestFixture]
      public class OrderPleaseTest
     {
+        [SetUp]
+        public void Setup()
+        {
+        }
+
         [Test, Description("Sample Tests")]
         public void SampleTest()
         {
