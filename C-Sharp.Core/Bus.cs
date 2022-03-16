@@ -10,13 +10,8 @@ namespace C_Sharp.Core
     {
         public static int Number(List<int[]> peopleListInOut)
         {
-            int total = 0;
-           foreach(var item in peopleListInOut)
-            {
-                total += item[0] - item[1];
-            }
 
-            return total;
+            return peopleListInOut.Sum(item => item[0] - item[1]);
         }
     }
 }
