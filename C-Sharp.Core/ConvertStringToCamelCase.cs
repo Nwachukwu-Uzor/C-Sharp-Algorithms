@@ -10,25 +10,22 @@ namespace C_Sharp.Core
     {
         public static string ToCamelCase(string str)
         {
-            var replaced = str.Replace('_', ' ');
-            replaced = replaced.Replace('_', ' ');
+            var replaced = str.Replace('_', ' ').Replace('-', ' ');
+            // replaced = string.Join("", replaced.Replace('-', ' ').Where(e => !char.IsWhiteSpace(e)));
 
             var stringBuilder = new StringBuilder();
             
             for(int i = 0; i < replaced.Length; i++)
             {
-                if (!char.IsWhiteSpace(replaced[i]))
+                if(char.IsWhiteSpace(replaced[i]))
                 {
-                    if (i > 0 && char.IsWhiteSpace(replaced[i - 1]))
-                    {
-                        stringBuilder.Append(replaced[i].ToString().ToUpper());
-                    } else
-                    {
-                        stringBuilder.Append(replaced[i]);
-                    }
+                    stringBuilder.Append(replaced[i + 1].ToString().ToUpper());
+                    i++;
+                    continue;
                 }
+                stringBuilder.Append(replaced[i].ToString());
             }
-
+            
             return stringBuilder.ToString().Trim();
         }
     }
