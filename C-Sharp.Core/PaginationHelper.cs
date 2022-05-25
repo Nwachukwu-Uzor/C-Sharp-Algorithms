@@ -42,7 +42,8 @@ namespace C_Sharp.Core
         {
             get
             {
-                return (ItemCount / _itemsPerPage) + 1; 
+                var pages = Math.Ceiling((decimal)ItemCount / (decimal)_itemsPerPage);
+                return (int)pages;
             }
         }
 
