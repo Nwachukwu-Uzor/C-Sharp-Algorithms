@@ -24,7 +24,7 @@ namespace C_Sharp.Core
                 || IsIncrementingSequence(number + 1) || IsIncrementingSequence(number + 2)
                 || IsDecrementingSequence(number + 1) || IsDecrementingSequence(number + 2)
                 || awesomePhrases.Contains(number + 1) || awesomePhrases.Contains(number + 2))
-                && number > 99
+                && (number + 1 > 99 || number + 2 > 99)
             )
             {
                 return 1;
@@ -47,14 +47,14 @@ namespace C_Sharp.Core
 
         public static bool IsDecrementingSequence(int number)
         {
-            var numbArray = number.ToString().Select(num => Convert.ToInt32(num) - 48);
+            var numbArray = number.ToString().Select(num => char.GetNumericValue(num));
             return numbArray.Zip(numbArray.Skip(1), (a, b) => (a - 1) == b).All(x => x);
         }
 
         public static bool IsIncrementingSequence(int number)
         {
-            var numbArray = number.ToString().Select(num => Convert.ToInt32(num) - 48).ToList();
-            if(numbArray[numbArray.Count - 1] == 0)
+            var numbArray = number.ToString().Select(num => char.GetNumericValue(num)).ToList();
+            if(numbArray[^1] == 0 && numbArray[^2] == 9)
             {
                 numbArray.RemoveAt(numbArray.Count - 1);
             }
